@@ -2,27 +2,31 @@ import csv
 import classes
 import time
 import tracemalloc
-# Uses a sorted priority queue to find top and bottom ten players for each stat
-# Also uses it to find the best stat in each season (i.e., best in 2017 for possession and DRAYMOND,
+# Dylan Norris, Matthew Adams, Ethan Terry
+# Uses a sorted priority queue to find top and bottom 5 players for each stat
+# Also uses it to find the best stats in each season (i.e., best in 2017 for possession and DRAYMOND,
 # Best in 2018 for possession and DRAYMOND etc.)
 
 
 def main():
+    time_start = time.perf_counter()
+    spq = classes.SortedPriorityQueue()
     tracemalloc.start()
-    find_min_max()
+    key, row = find_min_max(spq)
+    sort_years(key, row, spq)
 
     # Prints (current, peak) memory usage in bytes
     print(tracemalloc.get_traced_memory())
     tracemalloc.stop()
+    time_end = time.perf_counter()
+    print(f'{time_end - time_start:.5f} seconds')
 
 
-def find_min_max():
+def find_min_max(spq):
     # Csv sorts by season, player name, number of possessions a player played, and their DRAYMOND score
     # Draymond is the Defensive Rating Accounting for Yielding Minimal Openness by Nearest Defender
     csv_file = 'draymond.csv'
     column_index = int(input("Enter column to grab(0-3): "))
-    time_start = time.perf_counter()
-    spq = classes.SortedPriorityQueue()
 
     with open(csv_file, 'r') as file:
         csv_reader = csv.reader(file)
@@ -47,6 +51,10 @@ def find_min_max():
         key, row = spq.remove_min()
         print(f'Sorted row for min key {key} {row}')
 
+    return key, row
+
+
+def sort_years(key, row, spq):
     # Sorts top ten of a season based off the stat you originally sorted by
     search_year = input("\nDo you want to search by year?(y/n)").upper()
     if search_year == 'Y':
@@ -64,9 +72,8 @@ def find_min_max():
 
     elif search_year == 'N':
         print("Okay")
-
-    time_end = time.perf_counter()
-    print(f'{time_end - time_start:.5f} seconds')
+    else:
+        print("Invalid input")
 
 
 if __name__ == '__main__':
