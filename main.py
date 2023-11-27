@@ -36,13 +36,13 @@ def find_min_max():
             spq.add(key, value)
 
     # Finds top ten highest stats by column
-    for x in range(10):
+    for x in range(5):
         key, row = spq.remove_end()
         print(f'Sorted row for max key {key} {row}')
     print('\n')
 
     # Finds bottom ten lowest stats by column
-    for x in range(10):
+    for x in range(5):
         key, row = spq.remove_min()
         print(f'Sorted row for min key {key} {row}')
 
@@ -50,9 +50,17 @@ def find_min_max():
     search_year = input("\nDo you want to search by year?(y/n)").upper()
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
-        for row in spq._data:
+        cursor = spq._data.last()
+
+        printed_rows = 0
+        while cursor is not None and printed_rows < 10:
+            item = cursor.element()
+            row = item._value
             if row[0] == year_to_search:
                 print(row)
+                printed_rows += 1
+            cursor = spq._data.before(cursor)
+
     elif search_year == 'N':
         print("Okay")
 
