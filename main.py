@@ -35,12 +35,13 @@ def find_min_max():
             value = tuple(row)
             spq.add(key, value)
 
-    # while not spq.is_empty():
+    # Finds top ten highest stats by column
     for x in range(10):
         key, row = spq.remove_end()
         print(f'Sorted row for max key {key} {row}')
     print('\n')
 
+    # Finds bottom ten lowest stats by column
     for x in range(10):
         key, row = spq.remove_min()
         print(f'Sorted row for min key {key} {row}')
