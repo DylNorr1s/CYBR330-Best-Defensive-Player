@@ -9,15 +9,21 @@ import tracemalloc
 
 
 def main():
+    # Starts timer and memory tracker
     time_start = time.perf_counter()
-    spq = classes.SortedPriorityQueue()
     tracemalloc.start()
-    key, row = find_min_max(spq)
-    sort_years(key, row, spq)
+
+    # Creates Sorted Priority Queue object and assigns to variable
+    spq = classes.SortedPriorityQueue()
+
+    find_min_max(spq)
+    sort_years(spq)
 
     # Prints (current, peak) memory usage in bytes
     print(tracemalloc.get_traced_memory())
     tracemalloc.stop()
+
+    # Ends timer and prints final time
     time_end = time.perf_counter()
     print(f'{time_end - time_start:.5f} seconds')
 
@@ -54,7 +60,7 @@ def find_min_max(spq):
     return key, row
 
 
-def sort_years(key, row, spq):
+def sort_years(spq):
     # Sorts top ten of a season based off the stat you originally sorted by
     search_year = input("\nDo you want to search by year?(y/n)").upper()
     if search_year == 'Y':
