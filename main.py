@@ -3,7 +3,7 @@ import classes
 import time
 import tracemalloc
 # Dylan Norris, Matthew Adams, Ethan Terry
-# Uses a sorted priority queue to find top and bottom 5 players for each stat
+# Uses a sorted priority queue to find top and bottom 5 players for each stat from 2014 to 2019
 # Also uses it to find the best stats in each season (i.e., best in 2017 for possession and DRAYMOND,
 # Best in 2018 for possession and DRAYMOND etc.)
 
