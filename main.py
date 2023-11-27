@@ -30,23 +30,24 @@ def find_min_max():
         # Skips the header if there is one
         next(csv_reader, None)
 
+        # Assigns rows to key variable, columns to value variable, and adds it to the sorted priority queue
         for row in csv_reader:
             key = row[column_index]
             value = tuple(row)
             spq.add(key, value)
 
-    # Finds top ten highest stats by column
+    # Finds top 5 highest stats by column
     for x in range(5):
         key, row = spq.remove_end()
         print(f'Sorted row for max key {key} {row}')
     print('\n')
 
-    # Finds bottom ten lowest stats by column
+    # Finds bottom 5 lowest stats by column
     for x in range(5):
         key, row = spq.remove_min()
         print(f'Sorted row for min key {key} {row}')
 
-    # Sort by years
+    # Sorts top ten of a season based off the stat you originally sorted by
     search_year = input("\nDo you want to search by year?(y/n)").upper()
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
