@@ -65,12 +65,14 @@ def sort_years(spq):
     search_year = input("\nDo you want to search by year?(y/n)").upper()
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
+        
+        # Uses a pointer to find the right entries
         cursor = spq._data.last()
-
         printed_rows = 0
         while cursor is not None and printed_rows < 10:
             item = cursor.element()
             row = item._value
+            # Checks if the first column is equal to right year and prints it
             if row[0] == year_to_search:
                 print(row)
                 printed_rows += 1
