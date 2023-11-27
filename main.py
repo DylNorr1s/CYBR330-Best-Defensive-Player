@@ -45,6 +45,17 @@ def find_min_max():
     for x in range(10):
         key, row = spq.remove_min()
         print(f'Sorted row for min key {key} {row}')
+
+    # Sort by years
+    search_year = input("\nDo you want to search by year?(y/n)").upper()
+    if search_year == 'Y':
+        year_to_search = input("Enter year to search: ")
+        for row in spq._data:
+            if row[0] == year_to_search:
+                print(row)
+    elif search_year == 'N':
+        print("Okay")
+
     time_end = time.perf_counter()
     print(f'{time_end - time_start:.5f} seconds')
 
