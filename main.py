@@ -2,6 +2,9 @@ import csv
 import classes
 import time
 import tracemalloc
+# Uses a sorted priority queue to find top and bottom ten players for each stat
+# Also uses it to find the best stat in each season (i.e., best in 2017 for possession and DRAYMOND,
+# Best in 2018 for possession and DRAYMOND etc.) We need to add that part still
 
 
 def main():
