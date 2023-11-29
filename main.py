@@ -9,8 +9,7 @@ import tracemalloc
 
 
 def main():
-    # Starts timer and memory tracker
-    time_start = time.perf_counter()
+    # Starts memory tracker
     tracemalloc.start()
 
     # Creates Sorted Priority Queue object and assigns to variable
@@ -23,14 +22,11 @@ def main():
     print(tracemalloc.get_traced_memory())
     tracemalloc.stop()
 
-    # Ends timer and prints final time
-    time_end = time.perf_counter()
-    print(f'{time_end - time_start:.5f} seconds')
-
 
 def find_min_max(spq):
     # Csv sorts by season, player name, number of possessions a player played, and their DRAYMOND score
-    # Draymond is the Defensive Rating Accounting for Yielding Minimal Openness by Nearest Defender
+    # DRAYMOND is the Defensive Rating Accounting for Yielding Minimal Openness by Nearest Defender
+    time_start = time.perf_counter()
     csv_file = 'draymond.csv'
     column_index = int(input("Enter column to grab(0-3): "))
 
@@ -57,11 +53,14 @@ def find_min_max(spq):
         key, row = spq.remove_min()
         print(f'Sorted row for min key {key} {row}')
 
+    time_end = time.perf_counter()
+    print(f'{time_end - time_start:.5f} seconds to sort min/max')
     return key, row
 
 
 def sort_years(spq):
     # Sorts top ten of a season based off the stat you originally sorted by
+    time_start = time.perf_counter()
     search_year = input("\nDo you want to search by year?(y/n)").upper()
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
@@ -82,6 +81,9 @@ def sort_years(spq):
         print("Okay")
     else:
         print("Invalid input")
+
+    time_end = time.perf_counter()
+    print(f'{time_end - time_start:.5f} seconds to sort by year')
 
 
 if __name__ == '__main__':
