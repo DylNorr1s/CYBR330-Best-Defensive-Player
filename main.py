@@ -60,11 +60,11 @@ def find_min_max(spq):
 
 def sort_years(spq):
     # Sorts top ten of a season based off the stat you originally sorted by
-    time_start = time.perf_counter()
     search_year = input("\nDo you want to search by year?(y/n)").upper()
+
+    time_start = time.perf_counter()
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
-
         # Uses a pointer to find the right entries
         cursor = spq._data.last()
         printed_rows = 0
