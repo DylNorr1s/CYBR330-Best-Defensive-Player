@@ -209,6 +209,17 @@ class UnsortedPriorityQueue(PriorityQueueBase):
             walk = self._data.after(walk)
         return small
 
+    def _find_max(self):
+        if self.is_empty():
+            raise Exception('Priority queue is empty')
+        large = self._data.first()
+        walk = self._data.after(large)
+        while walk is not None:
+            if walk.element() > large.element():
+                large = walk
+            walk = self._data.after(walk)
+        return large
+
     def __len__(self):
         return len(self._data)
 
