@@ -236,6 +236,11 @@ class UnsortedPriorityQueue(PriorityQueueBase):
         item = self._data.delete(p)
         return item._key, item._value
 
+    def remove_max(self):
+        p = self._find_max()
+        item = self._data.delete(p)
+        return item._key. item._value
+
 
 class SortedPriorityQueue(PriorityQueueBase):
 
