@@ -35,7 +35,7 @@ def find_min_max(uspq):
 
     # Finds bottom 5 lowest stats by column
     for x in range(5):
-        key, row = uspq.remove_max()
+        key, row = uspq.remove_min()
         print(f'Sorted row for min key {key} {row}')
 
     time_end = time.perf_counter()
