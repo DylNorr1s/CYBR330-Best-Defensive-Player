@@ -24,18 +24,18 @@ def find_min_max(uspq):
         for row in csv_reader:
             key = row[column_index]
             value = tuple(row)
-            spq.add(key, value)
+            uspq.add(key, value)
 
 
 # Finds top 5 highest stats by column
     for x in range(5):
-        key, row = uspq.remove_end()
+        key, row = uspq.remove_max()
         print(f'Sorted row for max key {key} {row}')
     print('\n')
 
     # Finds bottom 5 lowest stats by column
     for x in range(5):
-        key, row = uspq.remove_min()
+        key, row = uspq.remove_max()
         print(f'Sorted row for min key {key} {row}')
 
     time_end = time.perf_counter()
