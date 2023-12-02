@@ -21,7 +21,7 @@ def find_min_max(uspq):
         # Skips the header if there is one
         next(csv_reader, None)
 
-        # Assigns rows to key variable, columns to value variable, and adds it to the sorted priority queue
+        # Assigns rows to key variable, columns to value variable, and adds it to the unsorted priority queue
         for row in csv_reader:
             key = row[column_index]
             value = tuple(row)
