@@ -6,11 +6,15 @@ import tracemalloc
 
 def main():
     tracemalloc.start()
+
+    # Creates unsorted pq object, obtains column index variable
     uspq = classes.UnsortedPriorityQueue()
     column_index = int(input("Enter column to grab(0-3): "))
+
     find_min_max(uspq, column_index)
     sort_years(uspq, column_index)
 
+    # Prints (current, peak) memory usage
     print(tracemalloc.get_traced_memory())
     tracemalloc.stop()
 

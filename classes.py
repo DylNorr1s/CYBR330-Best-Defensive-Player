@@ -209,6 +209,7 @@ class UnsortedPriorityQueue(PriorityQueueBase):
             walk = self._data.after(walk)
         return small
 
+    # Added a private find max method
     def _find_max(self):
         if self.is_empty():
             raise Exception('Priority queue is empty')
@@ -236,6 +237,7 @@ class UnsortedPriorityQueue(PriorityQueueBase):
         item = self._data.delete(p)
         return item._key, item._value
 
+    # Added a remove max function
     def remove_max(self):
         p = self._find_max()
         item = self._data.delete(p)
