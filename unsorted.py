@@ -52,7 +52,7 @@ def sort_years(uspq):
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
         # Uses a pointer to find the right entries
-        cursor = spq._data.last()
+        cursor = uspq._data.last()
         printed_rows = 0
         while cursor is not None and printed_rows < 10:
             item = cursor.element()
@@ -61,7 +61,7 @@ def sort_years(uspq):
             if row[0] == year_to_search:
                 print(row)
                 printed_rows += 1
-            cursor = spq._data.before(cursor)
+            cursor = uspq._data.before(cursor)
 
     elif search_year == 'N':
         print("Okay")
