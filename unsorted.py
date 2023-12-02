@@ -6,13 +6,13 @@ import tracemalloc
 
 def main():
     uspq = classes.UnsortedPriorityQueue()
-    find_min_max(uspq)
-    sort_years(uspq)
-
-
-def find_min_max(uspq):
-    csv_file = 'draymond.csv'
     column_index = int(input("Enter column to grab(0-3): "))
+    find_min_max(uspq, column_index)
+    sort_years(uspq, column_index)
+
+
+def find_min_max(uspq, column_index):
+    csv_file = 'draymond.csv'
     time_start = time.perf_counter()
     
     with open(csv_file, 'r') as file:
@@ -44,24 +44,26 @@ def find_min_max(uspq):
     return key, row
 
 
-def sort_years(uspq):
+def sort_years(uspq, column_index):
     # Sorts top ten of a season
     search_year = input("\nDo you want to search by year?(y/n)").upper()
 
     time_start = time.perf_counter()
     if search_year == 'Y':
         year_to_search = input("Enter year to search: ")
-        # Uses a pointer to find the right entries
-        cursor = uspq._data.first()
+        # Sorts items in the dataset based on a custom key function, lambda, which returns a tuple,
+        # Which serves as the sorting key
+        sorted_items = sorted(uspq._data, key=lambda item: (item._value[0] == year_to_search,
+                                                            float(item._value[column_index])), reverse=True)
+
+        # Iterates through the sorted items, prints them accordingly
         printed_rows = 0
-        while cursor is not None and printed_rows < 10:
-            item = cursor.element()
+        for item in sorted_items:
             row = item._value
-            # Checks if the first column is equal to right year and prints it
-            if row[0] == year_to_search:
-                print(row)
-                printed_rows += 1
-            cursor = uspq._data.after(cursor)
+            print(row)
+            printed_rows += 1
+            if printed_rows >= 10:
+                break
 
     elif search_year == 'N':
         print("Okay")
