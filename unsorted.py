@@ -7,13 +7,14 @@ import tracemalloc
 def main():
     uspq = classes.UnsortedPriorityQueue()
     find_min_max(uspq)
+    sort_years(uspq)
 
 
 def find_min_max(uspq):
-    time_start = time.perf_counter()
     csv_file = 'draymond.csv'
     column_index = int(input("Enter column to grab(0-3): "))
-
+    time_start = time.perf_counter()
+    
     with open(csv_file, 'r') as file:
         csv_reader = csv.reader(file)
 
@@ -41,6 +42,34 @@ def find_min_max(uspq):
     time_end = time.perf_counter()
     print(f'{time_end - time_start:.5f} seconds to sort min/max')
     return key, row
+
+
+def sort_years(uspq):
+    # Sorts top ten of a season
+    search_year = input("\nDo you want to search by year?(y/n)").upper()
+
+    time_start = time.perf_counter()
+    if search_year == 'Y':
+        year_to_search = input("Enter year to search: ")
+        # Uses a pointer to find the right entries
+        cursor = uspq._data.first()
+        printed_rows = 0
+        while cursor is not None and printed_rows < 10:
+            item = cursor.element()
+            row = item._value
+            # Checks if the first column is equal to right year and prints it
+            if row[0] == year_to_search:
+                print(row)
+                printed_rows += 1
+            cursor = uspq._data.after(cursor)
+
+    elif search_year == 'N':
+        print("Okay")
+    else:
+        print("Invalid input")
+
+    time_end = time.perf_counter()
+    print(f'{time_end - time_start:.5f} seconds to sort by year')
 
 
 if __name__ == '__main__':
