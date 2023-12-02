@@ -5,10 +5,14 @@ import tracemalloc
 
 
 def main():
+    tracemalloc.start()
     uspq = classes.UnsortedPriorityQueue()
     column_index = int(input("Enter column to grab(0-3): "))
     find_min_max(uspq, column_index)
     sort_years(uspq, column_index)
+
+    print(tracemalloc.get_traced_memory())
+    tracemalloc.stop()
 
 
 def find_min_max(uspq, column_index):
